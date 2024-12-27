@@ -9,7 +9,7 @@ jobs:
         with:
           cache: 'yarn'
       - name: Install project dependencies
-        run: yarn
+        run: yarn install
   build:
     runs-on: ubuntu-latest
     needs: dependencies
