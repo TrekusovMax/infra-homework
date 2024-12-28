@@ -1,8 +1,7 @@
 {
   "name": "infra-homework",
   "version": "1.0.0",
-  "main": "index.js",
-  "type": "module",
+  "main": "index.js", 
   "scripts": {
     "test:cjs": "node -r './build/loader.cjs' ./build/test/index.cjs",
     "test:esm": "node --import ./build/register.mjs ./build/test/index.mjs",
