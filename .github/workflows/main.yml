@@ -4,20 +4,28 @@ jobs:
   dependencies:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          cache: 'yarn'
+          node-version: '23.x' # Укажите версию Node.js
+          check-latest: true
+          cache: 'yarn'                
       - name: Install project dependencies
         run: yarn install --immutable
   build:
     runs-on: ubuntu-latest
     needs: dependencies
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          cache: 'yarn'
+          node-version: '23.x' # Укажите версию Node.js
+          check-latest: true
+          cache: 'yarn'                
       - name: Install project dependencies
         run: yarn install --immutable
       - name: build
@@ -26,10 +34,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: dependencies
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          cache: 'yarn'
+          node-version: '23.x' # Укажите версию Node.js
+          check-latest: true
+          cache: 'yarn'                
       - name: Install project dependencies
         run: yarn install --immutable
       - name: linters
@@ -38,10 +50,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: [dependencies, build]
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          cache: 'yarn'
+          node-version: '23.x' # Укажите версию Node.js
+          check-latest: true
+          cache: 'yarn'                
       - name: Install project dependencies
         run: yarn install --immutable
       - name: deploy
