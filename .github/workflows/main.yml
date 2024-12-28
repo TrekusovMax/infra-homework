@@ -18,6 +18,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: 'yarn'
+      - name: Install project dependencies
+        run: yarn install --immutable
       - name: build
         run: yarn build
   linters:
@@ -28,6 +30,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: 'yarn'
+      - name: Install project dependencies
+        run: yarn install --immutable
       - name: linters
         run: yarn linters
   deploy:
@@ -38,6 +42,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           cache: 'yarn'
+      - name: Install project dependencies
+        run: yarn install --immutable
       - name: deploy
         run: yarn deploy
     
