@@ -9,11 +9,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '23.x' # Укажите версию Node.js
+          node-version: '23.x'
           check-latest: true
-          cache: 'yarn'                
+          cache: 'yarn'
+      - name: Cache Yarn dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-      
       - name: Install project dependencies
-        run: yarn install --immutable
+        run: yarn install 
   build:
     runs-on: ubuntu-latest
     needs: dependencies
@@ -23,11 +30,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '23.x' # Укажите версию Node.js
+          node-version: '23.x'
           check-latest: true
-          cache: 'yarn'                
-      - name: Install project dependencies
-        run: yarn install --immutable
+      - name: Use cached dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}          
+
       - name: build
         run: yarn build
   linters:
@@ -39,11 +49,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '23.x' # Укажите версию Node.js
+          node-version: '23.x'
           check-latest: true
-          cache: 'yarn'                
-      - name: Install project dependencies
-        run: yarn install --immutable
+      - name: Use cached dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}            
+
       - name: linters
         run: yarn linters
   deploy:
@@ -55,11 +68,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '23.x' # Укажите версию Node.js
+          node-version: '23.x'
           check-latest: true
-          cache: 'yarn'                
-      - name: Install project dependencies
-        run: yarn install --immutable
+      - name: Use cached dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/yarn
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}           
+
       - name: deploy
         run: yarn deploy
     
