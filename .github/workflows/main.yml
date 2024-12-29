@@ -20,7 +20,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-      
       - name: Debug cache content
-        run: ls -la ~/.cache/yarn
+        run: ls -la ~/
       - name: Install project dependencies
         run: yarn install 
   build:
@@ -40,7 +40,7 @@ jobs:
           path: ~/.cache/yarn
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}          
       - name: Debug cache content
-        run: ls -la ~/.cache/yarn
+        run: ls -la ~/
       - name: Install project dependencies
         run: yarn install 
       - name: build
@@ -61,8 +61,7 @@ jobs:
         with:
           path: ~/.cache/yarn
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}    
-      - name: Debug cache content
-        run: ls -la ~/.cache/yarn          
+         
       - name: Install project dependencies
         run: yarn install 
       - name: linters
@@ -83,8 +82,7 @@ jobs:
         with:
           path: ~/.cache/yarn
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}           
-      - name: Debug cache content
-        run: ls -la ~/.cache/yarn          
+
       - name: Install project dependencies
         run: yarn install 
       - name: deploy
