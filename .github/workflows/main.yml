@@ -17,8 +17,6 @@ jobs:
         with:
           path: ~/.yarn
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}  
-      - name: Debug cache content
-        run: ls -la ~/.yarn/berry/cache
       - name: Install project dependencies
         run: yarn install 
   build:
@@ -37,8 +35,6 @@ jobs:
         with:
           path: ~/.yarn
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}          
-      - name: Debug cache content
-        run: ls -la ~/.yarn/berry/cache
       - name: Install project dependencies
         run: yarn install 
       - name: build
