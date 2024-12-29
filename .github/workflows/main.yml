@@ -16,11 +16,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.yarn
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-      
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}  
       - name: Debug cache content
-        run: ls -la ~/.yarn
+        run: ls -la ~/.yarn/berry/cache
       - name: Install project dependencies
         run: yarn install 
   build:
@@ -40,7 +38,7 @@ jobs:
           path: ~/.yarn
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}          
       - name: Debug cache content
-        run: ls -la ~/.yarn
+        run: ls -la ~/.yarn/berry/cache
       - name: Install project dependencies
         run: yarn install 
       - name: build
@@ -60,9 +58,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.yarn
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}    
-      - name: Debug cache content
-        run: ls -la ~/.yarn         
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}         
       - name: Install project dependencies
         run: yarn install 
       - name: linters
@@ -83,8 +79,6 @@ jobs:
         with:
           path: ~/.yarn
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}           
-      - name: Debug cache content
-        run: ls -la ~/.yarn
       - name: Install project dependencies
         run: yarn install 
       - name: deploy
