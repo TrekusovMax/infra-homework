@@ -15,12 +15,12 @@ jobs:
       - name: Cache Yarn dependencies
         uses: actions/cache@v4
         with:
-          path: ~/.cache/yarn
+          path: ~/.yarn
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-      
       - name: Debug cache content
-        run: ls -la ~/
+        run: ls -la ~/.yarn
       - name: Install project dependencies
         run: yarn install 
   build:
@@ -37,10 +37,10 @@ jobs:
       - name: Use cached dependencies
         uses: actions/cache@v4
         with:
-          path: ~/.cache/yarn
+          path: ~/.yarn
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}          
       - name: Debug cache content
-        run: ls -la ~/
+        run: ls -la ~/.yarn
       - name: Install project dependencies
         run: yarn install 
       - name: build
@@ -59,9 +59,10 @@ jobs:
       - name: Use cached dependencies
         uses: actions/cache@v4
         with:
-          path: ~/.cache/yarn
+          path: ~/.yarn
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}    
-         
+      - name: Debug cache content
+        run: ls -la ~/.yarn         
       - name: Install project dependencies
         run: yarn install 
       - name: linters
@@ -80,9 +81,10 @@ jobs:
       - name: Use cached dependencies
         uses: actions/cache@v4
         with:
-          path: ~/.cache/yarn
+          path: ~/.yarn
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}           
-
+      - name: Debug cache content
+        run: ls -la ~/.yarn
       - name: Install project dependencies
         run: yarn install 
       - name: deploy
